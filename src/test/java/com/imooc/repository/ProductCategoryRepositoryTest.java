@@ -1,6 +1,7 @@
 package com.imooc.repository;
 
 import com.imooc.dataobject.ProductCategory;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,9 @@ public class ProductCategoryRepositoryTest {
 
     @Test
     public void saveTest() {
-        ProductCategory productCategory = repository.findOne(2);
-        productCategory.setCategoryType(3);
-        repository.save(productCategory);
+        ProductCategory productCategory = new ProductCategory("女生最爱",1);
+        ProductCategory result = repository.save(productCategory);
+//        Assert.assertNotEquals(null, result);
+        Assert.assertNotNull(result);
     }
 }

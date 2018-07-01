@@ -2,8 +2,6 @@ package com.imooc.dataobject;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -26,7 +24,8 @@ public class ProductCategory {
 
     private Integer categoryType;
 
-    private Date createTime;
-
-    private Date updateTime;
+    public ProductCategory(String categoryName, Integer categoryType) {
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+    }
 }
