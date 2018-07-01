@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductCategoryRepositoryTest {
@@ -21,4 +19,10 @@ public class ProductCategoryRepositoryTest {
         System.out.println(productCategory.toString());
     }
 
+    @Test
+    public void saveTest() {
+        ProductCategory productCategory = repository.findOne(2);
+        productCategory.setCategoryType(3);
+        repository.save(productCategory);
+    }
 }
