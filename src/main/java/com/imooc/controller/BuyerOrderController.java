@@ -68,12 +68,24 @@ public class BuyerOrderController {
     }
 
     @GetMapping("/detail")
-    public ResultVO<OrderDTO> list(@RequestParam("openid") String openid,
+    public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
                                    @RequestParam("orderId") String orderId) {
         //TODO
         OrderDTO orderDTO = orderService.findOne(orderId);
 
         return ResultVOUtil.success(orderDTO);
     }
+
+
+    @PostMapping("/cancel")
+    public ResultVO cancel(@RequestParam("openid") String openid,
+                           @RequestParam("orderId") String orderId) {
+        //TODO
+        OrderDTO orderDTO = orderService.findOne(orderId);
+        orderService.cancel(orderDTO);
+
+        return ResultVOUtil.success();
+    }
+
 
 }
