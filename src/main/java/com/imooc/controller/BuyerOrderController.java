@@ -66,4 +66,14 @@ public class BuyerOrderController {
 
         return ResultVOUtil.success(orderDTOPage.getContent());
     }
+
+    @GetMapping("/detail")
+    public ResultVO<OrderDTO> list(@RequestParam("openid") String openid,
+                                   @RequestParam("orderId") String orderId) {
+        //TODO
+        OrderDTO orderDTO = orderService.findOne(orderId);
+
+        return ResultVOUtil.success(orderDTO);
+    }
+
 }
