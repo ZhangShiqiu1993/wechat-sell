@@ -17,7 +17,7 @@ public class WeixinController {
 
     @Value("${wechat.mpAppSecret}")
     private String appSecret;
-    
+
     @GetMapping("/auth")
     public void auth(@RequestParam("code") String code) {
         log.info("进入auth方法……");
