@@ -38,7 +38,6 @@ public class ProductServiceImplTest {
     public void findAll() {
         PageRequest request = new PageRequest(0,2);
         Page<ProductInfo> productInfoPage = productService.findAll(request);
-//        System.out.println(productInfoPage.getTotalElements());
         Assert.assertNotEquals(0, productInfoPage.getTotalElements());
     }
 
@@ -56,5 +55,17 @@ public class ProductServiceImplTest {
 
         ProductInfo result = productService.save(productInfo);
         Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void onSale() {
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.UP, result.getProductStatusEnum());
+    }
+
+    @Test
+    public void offSale() {
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertEquals(ProductStatusEnum.DOWN, result.getProductStatusEnum());
     }
 }
