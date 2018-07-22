@@ -52,7 +52,7 @@ public class SellerCategoryController {
             map.put("url", "/sell/seller/category/index");
             return new ModelAndView("common/error", map);
         }
-        
+
         try {
             ProductCategory productCategory = new ProductCategory();
             if (form.getCategoryId() != null) {
