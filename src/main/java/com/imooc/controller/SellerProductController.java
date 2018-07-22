@@ -1,6 +1,7 @@
 package com.imooc.controller;
 
 import com.imooc.dataobject.ProductInfo;
+import com.imooc.exception.SellException;
 import com.imooc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,4 +32,18 @@ public class SellerProductController {
         return new ModelAndView("product/list", map);
     }
 
+    @RequestMapping("/on_sale")
+    public ModelAndView onSale(@RequestParam("productId") String productId,
+                               Map<String, Object> map) {
+        try {
+            productService.onSale(productId);
+        } catch (SellException e) {
+            map.put("msg", e.getMessage());
+            map.put("url", "/sell/seller/product/list");
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("url", "/sell/seller/product/list");
+        return new ModelAndView("common/success", map);
+    }
 }
