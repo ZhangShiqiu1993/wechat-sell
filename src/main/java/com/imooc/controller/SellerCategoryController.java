@@ -1,15 +1,12 @@
 package com.imooc.controller;
 
 import com.imooc.dataobject.ProductCategory;
-import com.imooc.dataobject.ProductInfo;
 import com.imooc.exception.SellException;
 import com.imooc.form.CategoryForm;
 import com.imooc.service.CategoryService;
-import com.imooc.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,9 +52,9 @@ public class SellerCategoryController {
             map.put("url", "/sell/seller/category/index");
             return new ModelAndView("common/error", map);
         }
-
-        ProductCategory productCategory = new ProductCategory();
+        
         try {
+            ProductCategory productCategory = new ProductCategory();
             if (form.getCategoryId() != null) {
                 productCategory = categoryService.findOne(form.getCategoryId());
             }
