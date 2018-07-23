@@ -15,3 +15,6 @@ spring:
     port: 6379
 server:
   context-path: /sell
+logging:
+  level:
+    com.imooc.dataobject.mapper: trace
