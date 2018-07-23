@@ -32,6 +32,7 @@ public class BuyerProductController {
 
     @GetMapping("/list")
     @Cacheable(cacheNames = "product", key = "123")
+ // @Cacheable(cacheNames = "product", key = "#sellerId", condition = "#sellerId.length() > 3", unless = "#result.getCode() != 0")
     public ResultVO list() {
         List<ProductInfo> productInfoList = productService.findUpAll();
 
