@@ -31,6 +31,7 @@ public class BuyerProductController {
     private CategoryService categoryService;
 
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product", key = "123")
     public ResultVO list() {
         List<ProductInfo> productInfoList = productService.findUpAll();
 
