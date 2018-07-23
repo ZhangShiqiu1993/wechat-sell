@@ -12,10 +12,7 @@ import com.imooc.enums.ResultEnum;
 import com.imooc.exception.SellException;
 import com.imooc.repository.OrderDetailRepository;
 import com.imooc.repository.OrderMasterRepository;
-import com.imooc.service.OrderService;
-import com.imooc.service.PayService;
-import com.imooc.service.ProductService;
-import com.imooc.service.PushMessageService;
+import com.imooc.service.*;
 import com.imooc.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -50,6 +47,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -88,6 +88,8 @@ public class OrderServiceImpl implements OrderService {
                                     .collect(Collectors.toList());
 
         productService.decreaseStock(cartDTOList);
+
+        webSocket.sendMessage("有新的订单");
 
         return orderDTO;
     }
