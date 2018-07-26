@@ -1,5 +1,6 @@
 package com.ebay.product.controller;
 
+import com.ebay.product.DTO.CartDTO;
 import com.ebay.product.VO.ProductInfoVO;
 import com.ebay.product.VO.ProductVO;
 import com.ebay.product.VO.ResultVO;
@@ -80,5 +81,10 @@ public class ProductController {
     @PostMapping("/listForOrder")
     public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList) {
         return productService.findList(productIdList);
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList) {
+        productService.decreaseStock(cartDTOList);
     }
 }

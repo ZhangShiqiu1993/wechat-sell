@@ -1,5 +1,6 @@
 package com.ebay.product.service;
 
+import com.ebay.product.DTO.CartDTO;
 import com.ebay.product.dataobject.ProductInfo;
 
 import java.util.List;
@@ -21,4 +22,10 @@ public interface ProductService {
      * @return
      */
     List<ProductInfo> findList(List<String> productIdList);
+
+    /**
+     * 扣库存
+     * @param cartDTOList
+     */
+    void decreaseStock(List<CartDTO> cartDTOList);
 }
