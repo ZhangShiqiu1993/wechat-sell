@@ -1,6 +1,6 @@
 package com.ebay.product.service.impl;
 
-import com.ebay.product.DTO.CartDTO;
+import com.ebay.product.dto.CartDTO;
 import com.ebay.product.dataobject.ProductInfo;
 import com.ebay.product.enums.ProductStatusEnum;
 import com.ebay.product.enums.ResultEnum;

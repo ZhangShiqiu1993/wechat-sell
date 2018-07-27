@@ -1,4 +1,4 @@
-package com.ebay.product.DTO;
+package com.ebay.order.dto;
 
 import lombok.Data;
 

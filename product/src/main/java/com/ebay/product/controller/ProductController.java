@@ -1,6 +1,6 @@
 package com.ebay.product.controller;
 
-import com.ebay.product.DTO.CartDTO;
+import com.ebay.product.dto.CartDTO;
 import com.ebay.product.VO.ProductInfoVO;
 import com.ebay.product.VO.ProductVO;
 import com.ebay.product.VO.ResultVO;
