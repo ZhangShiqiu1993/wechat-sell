@@ -1,4 +1,4 @@
-package com.ebay.eureka;
+package com.e.eureka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

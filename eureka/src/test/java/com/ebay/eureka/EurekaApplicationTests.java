@@ -1,4 +1,4 @@
-package com.ebay.eureka;
+package com.e.eureka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

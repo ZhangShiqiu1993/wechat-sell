@@ -1,4 +1,4 @@
-package com.ebay.client;
+package com.e.client;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
