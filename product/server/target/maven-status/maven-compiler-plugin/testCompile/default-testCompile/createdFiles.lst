@@ -1,0 +1,5 @@
+com/e/product/ProductApplicationTests.class
+com/e/product/service/ProductServiceTest.class
+com/e/product/service/CategoryServiceTest.class
+com/e/product/repository/ProductInfoRepositoryTest.class
+com/e/product/repository/ProductCategoryRepositoryTest.class
