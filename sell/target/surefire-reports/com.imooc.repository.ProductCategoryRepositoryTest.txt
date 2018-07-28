@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.imooc.repository.ProductCategoryRepositoryTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.827 sec - in com.imooc.repository.ProductCategoryRepositoryTest
