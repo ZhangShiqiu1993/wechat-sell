@@ -53,3 +53,5 @@ mvnw*
 application-dev.yml
 MP_verify_R1tjgqBbwueTEmeb.txt
 *.p12
+/backup/
+*/target/*

@@ -14,5 +14,6 @@
 /Users/shiqzhang/Documents/workspace/github/sell/product/server/src/main/java/com/e/product/service/impl/CategoryServiceImpl.java
 /Users/shiqzhang/Documents/workspace/github/sell/product/server/src/main/java/com/e/product/exception/ProductException.java
 /Users/shiqzhang/Documents/workspace/github/sell/product/server/src/main/java/com/e/product/VO/ProductInfoVO.java
+/Users/shiqzhang/Documents/workspace/github/sell/product/server/src/main/java/com/e/product/utils/JsonUtil.java
 /Users/shiqzhang/Documents/workspace/github/sell/product/server/src/main/java/com/e/product/ProductApplication.java
 /Users/shiqzhang/Documents/workspace/github/sell/product/server/src/main/java/com/e/product/repository/ProductCategoryRepository.java

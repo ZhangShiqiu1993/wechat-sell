@@ -4,6 +4,7 @@ com/e/product/service/ProductService.class
 com/e/product/repository/ProductCategoryRepository.class
 com/e/product/controller/ServerController.class
 com/e/product/service/impl/ProductServiceImpl.class
+com/e/product/utils/JsonUtil.class
 com/e/product/utils/ResultVOUtil.class
 com/e/product/ProductApplication.class
 com/e/product/enums/ResultEnum.class
