@@ -51,18 +51,31 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
     public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
+        List<ProductInfo> productInfoList = decreaseStockProcess(decreaseStockInputList);
+
+        List<ProductInfoOutput> productInfoOutputList = productInfoList.stream().map(e -> {
+            ProductInfoOutput output = new ProductInfoOutput();
+            BeanUtils.copyProperties(e, output);
+            return output;
+        }).collect(Collectors.toList());
+
+        amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(productInfoOutputList));
+    }
+
+    @Transactional
+    public List<ProductInfo> decreaseStockProcess(List<DecreaseStockInput> decreaseStockInputList) {
+        List<ProductInfo> productInfoList = new ArrayList<>();
         for (DecreaseStockInput decreaseStockInput : decreaseStockInputList) {
             Optional<ProductInfo> productInfoOptional =
                     productInfoRepository.findById(decreaseStockInput.getProductId());
 
-            if (!productInfoOptional.isPresent()){
+            if (!productInfoOptional.isPresent()) {
                 throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
             }
 
             ProductInfo productInfo = productInfoOptional.get();
-            //库存是否足够
+
             Integer result = productInfo.getProductStock() - decreaseStockInput.getProductQuantity();
             if (result < 0) {
                 throw new ProductException(ResultEnum.PRODUCT_STOCK_ERROR);
@@ -71,10 +84,8 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(result);
             productInfoRepository.save(productInfo);
 
-            ProductInfoOutput output = new ProductInfoOutput();
-            BeanUtils.copyProperties(productInfo, output);
-            amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(output));
+            productInfoList.add(productInfo);
         }
+        return productInfoList;
     }
-
 }
