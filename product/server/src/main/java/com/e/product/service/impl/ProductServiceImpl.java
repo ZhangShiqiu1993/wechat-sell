@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.xml.ws.handler.PortInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,25 +51,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
-        List<ProductInfo> productInfoList = decreaseStockProcess(decreaseStockInputList);
-
-        //发送mq消息
-        List<ProductInfoOutput> productInfoOutputList = productInfoList.stream().map(e -> {
-            ProductInfoOutput output = new ProductInfoOutput();
-            BeanUtils.copyProperties(e, output);
-            return output;
-        }).collect(Collectors.toList());
-        amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(productInfoOutputList));
-
-    }
-
     @Transactional
-    public List<ProductInfo> decreaseStockProcess(List<DecreaseStockInput> decreaseStockInputList) {
-        List<ProductInfo> productInfoList = new ArrayList<>();
-        for (DecreaseStockInput decreaseStockInput: decreaseStockInputList) {
-            Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(decreaseStockInput.getProductId());
-            //判断商品是否存在
+    public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
+        for (DecreaseStockInput decreaseStockInput : decreaseStockInputList) {
+            Optional<ProductInfo> productInfoOptional =
+                    productInfoRepository.findById(decreaseStockInput.getProductId());
+
             if (!productInfoOptional.isPresent()){
                 throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
             }
@@ -82,8 +70,11 @@ public class ProductServiceImpl implements ProductService {
 
             productInfo.setProductStock(result);
             productInfoRepository.save(productInfo);
-            productInfoList.add(productInfo);
+
+            ProductInfoOutput output = new ProductInfoOutput();
+            BeanUtils.copyProperties(productInfo, output);
+            amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(output));
         }
-        return productInfoList;
     }
+
 }
