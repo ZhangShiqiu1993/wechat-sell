@@ -40,6 +40,7 @@ public class ProductController {
      * 4. 构造数据
      */
     @GetMapping("/list")
+//    @CrossOrigin(allowCredentials = true)
     public ResultVO<ProductVO> list() {
         //1. 查询所有在架的商品
         List<ProductInfo> productInfoList = productService.findUpAll();
