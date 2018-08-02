@@ -19,9 +19,6 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 @Component
 public class AuthBuyerFilter extends ZuulFilter {
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
     @Override
     public String filterType() {
         return PRE_TYPE;
