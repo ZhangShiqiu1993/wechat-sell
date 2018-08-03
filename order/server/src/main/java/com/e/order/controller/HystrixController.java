@@ -2,7 +2,6 @@ package com.e.order.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -20,13 +19,14 @@ import java.util.Arrays;
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class HystrixController {
 
-    @HystrixCommand(commandProperties = {
-// 超时等待  @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
-            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),  //设置熔断
-            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), //设置熔断最小请求数
-            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //设置休眠时间窗
-            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),
-    })
+//    @HystrixCommand(commandProperties = {
+//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000") //超时等待
+//            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),  //设置熔断
+//            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), //设置熔断最小请求数
+//            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //设置休眠时间窗
+//            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),
+//    })
+    @HystrixCommand(commandKey = "")
     @GetMapping("/getProductInfoList")
     public String getProductInfoList() {
         RestTemplate restTemplate = new RestTemplate();
