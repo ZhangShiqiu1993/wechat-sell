@@ -8,4 +8,8 @@
 + To improve user experience with payment, integrated order payment system with WeChat pay
 + To have both the advantage of relational and NoSQL database, chose Neo4j to store data; to reduce the response time, use Redis as cache; and enhance repository features by extending global JPA interface
 + To build a Single Sign-On system, integrated Spring Cloud Security with OAuth2 protocol
-+ For the purpose of providing high availability and high performance, choice FastFDS to enhance the accessibility of a large-scale distributed system and provided a dynamic scaling file system; used Eureka to discovery service; used Zuul for dynamic routing and Hystrix for fault tolerance and monitoring; docker-compose to manage all services
++ For the purpose of providing high availability and high performance, choice FastFDS to enhance the accessibility of a large-scale distributed system and provided a dynamic scaling file system; used spring cloud bus and rabbitMQ for config updating; used Eureka to discovery service; used Zuul as api gateway and Hystrix for fault tolerance and monitoring; used Zipkin and seluth for link tracing; docker and rancher to manage all services
+
+---
+
+累死了…不想升到spring cloud 2.0正式版了…
