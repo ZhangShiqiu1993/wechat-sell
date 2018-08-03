@@ -28,6 +28,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000
-      circuitBreaker:
-        enabled:
-          true
+feign:
+  hystrix:
+    enabled: true
